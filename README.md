@@ -1,6 +1,7 @@
 # Lithium supply-chain optimisation — Energies 2024 paper model
 
 [![Paper DOI](https://img.shields.io/badge/paper-10.3390%2Fen17112685-blue)](https://doi.org/10.3390/en17112685)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sear-labs/lithium-energies-2024/blob/main/notebooks/00_walkthrough.ipynb)
 
 The optimisation model behind:
 
@@ -113,6 +114,15 @@ options = {
 ```
 
 `SecretNotFoundError` on first run is expected for anyone who has not added those three secrets.
+
+## Archiving
+
+Tagged releases are archived to Zenodo, which issues a version DOI per release and a concept DOI
+that always resolves to the latest. The code DOI badge goes here once the first release is archived;
+it and the paper DOI should cross-reference each other.
+
+Frozen means frozen: after a tagged release, a correction becomes a new version with a new DOI, not
+an amended history. What the DOI resolves to must stay byte-identical to what was archived.
 
 ## Citing
 
