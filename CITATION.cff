@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, cite both the paper and the software."
+title: "Lithium supply-chain optimisation - Energies 2024 paper model"
+version: 1.0.0
+date-released: "2026-09-03"
+license: MIT
+type: software
+authors:
+  - family-names: "Jones"
+    given-names: "Erick C."
+    name-suffix: "Jr."
+    orcid: "https://orcid.org/0000-0003-0559-4699"
+    affiliation: "University of Texas at Arlington"
+preferred-citation:
+  type: article
+  title: "Lithium Supply Chain Optimization: A Global Analysis of Critical Minerals for Batteries"
+  authors:
+    - family-names: "Jones"
+      given-names: "Erick C."
+      name-suffix: "Jr."
+      orcid: "https://orcid.org/0000-0003-0559-4699"
+  journal: "Energies"
+  year: 2024
+  volume: 17
+  issue: 11
+  start: 2685
+  doi: "10.3390/en17112685"

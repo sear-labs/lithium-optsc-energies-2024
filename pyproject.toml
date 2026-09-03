@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lithium-energies-2024"
+version = "1.0.0"
+description = "The lithium supply-chain MILP behind Jones (2024), Energies 17, 2685"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+license = { text = "MIT" }
+authors = [{ name = "Erick C. Jones Jr.", email = "erick.jones@uta.edu" }]
+
+# Upper bounds are deliberate. This repo is pinned to a published result; an
+# unannounced major version of pandas or gurobipy could silently change it.
+dependencies = [
+    "pandas>=2.0,<3",
+    "gurobipy>=11.0,<14",
+    "openpyxl>=3.1,<4",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0,<9"]
+
+[project.urls]
+Paper = "https://doi.org/10.3390/en17112685"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
