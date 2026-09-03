@@ -25,3 +25,10 @@ __pycache__/
 *.egg-info/
 build/
 dist/
+
+# Belt and braces: the model writes these via RESULTS_DIR now, but a stray
+# relative write should never land in the repo root again.
+/*.xlsx
+/*.sol
+/*.mps
+/*.lp

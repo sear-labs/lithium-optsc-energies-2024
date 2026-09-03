@@ -799,7 +799,7 @@ df = pd.DataFrame(varInfo)
 
 df.columns=['Variable Name','Solution Value', 'LB','UB']
 
-df.to_excel("variables.xlsx", index=False)
+df.to_excel(str(RESULTS_DIR / "variables.xlsx"), index=False)
 
 
 df_var = df.query('`Solution Value` > 0')
@@ -815,7 +815,7 @@ df = pd.DataFrame(constrInfo)
 
 df.columns=['Constraint Name','Constraint equation', 'Value','Sense','RHS']
 
-df.to_excel("constraints.xlsx", index=False)
+df.to_excel(str(RESULTS_DIR / "constraints.xlsx"), index=False)
 
 df
 

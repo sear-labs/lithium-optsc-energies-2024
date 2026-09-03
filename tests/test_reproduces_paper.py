@@ -145,3 +145,22 @@ def test_objective_matches_the_paper():
     assert rel < OBJECTIVE_TOL, (
         "objective %.6e is %.4f%% from the paper's %.2e (tolerance %.1f%%)"
         % (m.ObjVal, 100 * rel, PAPER_OBJECTIVE, 100 * OBJECTIVE_TOL))
+
+
+def test_every_write_goes_to_results():
+    """No relative writes. They land in the caller's working directory.
+
+    This regressed once: the extractor redirected Gurobi's m.write() calls but
+    not pandas' df.to_excel(), so running the tests dropped variables.xlsx and
+    constraints.xlsx into the repo root - breaking the one-way flow the README
+    promises. Static check, so it cannot come back.
+    """
+    import re
+
+    src = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                       "..", "src", "lithium_energies", "model.py")
+    text = open(src, encoding="utf-8").read()
+    writers = re.findall(r"(?:m\.write|\.to_excel|\.to_csv|\.to_pickle|\.to_parquet)"
+                         r"\(\s*['\"][^'\"]+['\"]", text)
+    assert not writers, (
+        "these writers use a relative path instead of RESULTS_DIR: %r" % writers)
