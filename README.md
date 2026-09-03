@@ -59,9 +59,50 @@ paper), 9,511,655.43, and 9,511,781.80. All three round to 9.51 × 10⁶.
 `tests/test_reproduces_paper.py` asserts the structural figures exactly and the objective within a
 documented tolerance.
 
+## Verify it without a solver, without a licence
+
+**Re-solving is the wrong verb.** This is a MIP that Gurobi could not close in 28 hours, finishing
+with a ~0.03% gap open. Pointing an open-source solver at it and asking for the published number
+sets you up to fail: CBC and HiGHS are good, but they will not beat Gurobi's overnight incumbent,
+and if they found one it would be a *different* incumbent - that is what an open gap means.
+
+**Checking is the right verb, and it is stronger.** `artifacts/` ships the frozen instance
+(`model.mps`, `model.lp`) and the paper's solution (`solution.sol`). Given those, anyone can confirm
+in seconds, with no solver installed and no licence, that the solution is feasible and that its
+objective is the published figure:
+
+```bash
+python scripts/verify_solution.py            # needs only numpy
+python scripts/verify_solution.py --relax    # + LP bound via HiGHS, which ships inside scipy
+```
+
+```
+  13556 constraint rows, 13379 columns (2673 integer/binary)
+  recomputed objective   9.5114321437e+06
+  claimed in .sol        9.5114321437e+06   (delta 0.000e+00)
+  worst row violation    7.451e-09
+  worst bound violation  0.000e+00
+  worst integrality err  0.000e+00
+  FEASIBLE, and the objective is the published value
+
+  LP bound               9.4916396678e+06
+  integrality gap        0.2081%
+```
+
+That verification is exact, needs no licence, and reproduces bit for bit forever - none of which is
+true of re-solving.
+
+The `--relax` figure is the one thing an open-source solver contributes cheaply and usefully: the LP
+relaxation sits **0.21% below** the incumbent, and closing that to 0.02% is what cost Gurobi 28
+hours. It quantifies the problem's difficulty rather than pretending to reproduce it.
+
+`scripts/verify_solution.py` includes a small hand-written MPS reader - PuLP's rejects the `LI`
+bound type Gurobi writes, and `highspy` was not worth adding as a dependency for one file.
+
 ## Layout
 
 ```
+artifacts/                       the frozen instance + the paper's solution. Committed on purpose.
 data/raw/                        46 instance tables + the warm-start solution. Read-only.
 src/lithium_energies/model.py    the model
 scripts/run_all.py               build, check, optionally solve
