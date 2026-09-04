@@ -1,7 +1,7 @@
 # Lithium supply-chain optimisation — Energies 2024 paper model
 
 [![Paper DOI](https://img.shields.io/badge/paper-10.3390%2Fen17112685-blue)](https://doi.org/10.3390/en17112685)
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sear-labs/lithium-energies-2024/blob/main/notebooks/00_walkthrough.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/sear-labs/lithium-optsc-energies-2024/blob/main/notebooks/00_walkthrough.ipynb)
 
 The optimisation model behind:
 

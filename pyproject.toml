@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "lithium-energies-2024"
+name = "lithium-optsc-energies-2024"
 version = "1.0.0"
 description = "The lithium supply-chain MILP behind Jones (2024), Energies 17, 2685"
 readme = "README.md"
