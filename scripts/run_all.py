@@ -50,7 +50,7 @@ def main():
 
     gp.Model.optimize = patched
     t0 = time.time()
-    print("building the model from data/input_csvs ...", flush=True)
+    print("building the model from data/raw ...", flush=True)
     try:
         import lithium_energies.model  # noqa: F401  (executes the notebook code)
     except Exception as exc:
