@@ -165,6 +165,31 @@ it and the paper DOI should cross-reference each other.
 Frozen means frozen: after a tagged release, a correction becomes a new version with a new DOI, not
 an amended history. What the DOI resolves to must stay byte-identical to what was archived.
 
+## How to cite
+
+Cite **the paper** for the work and **this repository** for the code.
+
+```bibtex
+@article{jones2024lithium,
+  author  = {Jones, Jr., Erick C.},
+  title   = {Lithium Supply Chain Optimization: A Global Analysis of
+             Critical Minerals for Batteries},
+  journal = {Energies},
+  volume  = {17},
+  number  = {11},
+  pages   = {2685},
+  year    = {2024},
+  doi     = {10.3390/en17112685}
+}
+```
+
+**Code DOI:** not yet minted. Once this repository is connected to Zenodo and a release is tagged,
+Zenodo issues two DOIs — a *version* DOI per release, and a **concept DOI that always resolves to
+the latest version and never changes**. The concept DOI goes here and in `CITATION.cff`; it stays
+correct for the life of the repository, so it is one edit rather than a per-release chore.
+
+`CITATION.cff` in the repo root also gives GitHub's "Cite this repository" button.
+
 ## Citing
 
 Cite the paper for the work and this repository for the code — `CITATION.cff` carries both.
