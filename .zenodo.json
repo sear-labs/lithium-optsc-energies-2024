@@ -1,0 +1,29 @@
+{
+  "upload_type": "software",
+  "license": "mit-license",
+  "creators": [
+    {
+      "name": "Jones, Erick C., Jr.",
+      "affiliation": "University of Texas at Arlington",
+      "orcid": "0000-0003-0559-4699"
+    }
+  ],
+  "access_right": "open",
+  "title": "Lithium supply-chain optimisation - Energies 2024 paper model",
+  "description": "<p>The multi-period mixed-integer program behind Jones (2024), <em>Energies</em> 17, 2685: a five-stage global lithium supply chain - mining, processing, cathode, cell, pack - with a recycling loop, solved to 2100 under minimum-cost and minimum-CO2 objectives.</p><p>Rebuilding the instance from the shipped data reproduces the paper's stated dimensions exactly (13,556 constraint rows, 10,706 continuous variables). The published objective is an incumbent rather than a proven optimum - the solve terminates on a time limit with a residual gap - so the repository also ships the frozen model instance and its solution, letting anyone verify the published figure with no solver and no commercial licence.</p><p><strong>Unfunded work.</strong> No grant supported this model.</p>",
+  "related_identifiers": [
+    {
+      "identifier": "10.3390/en17112685",
+      "relation": "isSupplementTo",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    }
+  ],
+  "keywords": [
+    "lithium",
+    "supply chain optimisation",
+    "critical minerals",
+    "mixed-integer programming",
+    "reproducibility"
+  ]
+}
