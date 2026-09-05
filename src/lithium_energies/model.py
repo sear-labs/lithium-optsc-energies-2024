@@ -15,7 +15,7 @@ https://doi.org/10.3390/en17112685
 """
 import pandas as pd
 
-from .paths import DATA_DIR, RESULTS_DIR   # noqa: F401  (paths live apart from the model)
+from .paths import DATA_DIR, RESULTS_DIR, check_data_dir   # noqa: F401  (paths live apart from the model)
 
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -28,6 +28,7 @@ def _csv(name):
     original code fails on Colab and in CI. Resolved here rather than by
     renaming the paper's own data files.
     """
+    check_data_dir(DATA_DIR)
     p = DATA_DIR / name
     if p.exists():
         return pd.read_csv(p)
