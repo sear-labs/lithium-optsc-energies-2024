@@ -47,7 +47,6 @@ def _csv(name):
 import gurobipy as gp
 from gurobipy import GRB
 import pandas as pd
-from IPython.display import Image
 import io
 
 

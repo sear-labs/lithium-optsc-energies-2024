@@ -164,3 +164,47 @@ def test_every_write_goes_to_results():
                          r"\(\s*['\"][^'\"]+['\"]", text)
     assert not writers, (
         "these writers use a relative path instead of RESULTS_DIR: %r" % writers)
+
+
+def test_every_import_is_a_declared_dependency():
+    """The package must import with nothing but what pyproject declares.
+
+    `from IPython.display import Image` survived the notebook extraction as an
+    unused line. IPython is not a dependency, so a clean `pip install` produced a
+    package that could not import its own model - and the failure surfaced three
+    layers away, as "model was never optimized", because the caller caught the
+    ImportError as an expected post-build failure.
+
+    Scanning the source is the cheap guard. Actually importing the module would
+    execute the whole model.
+    """
+    import ast
+    import os
+
+    declared = {"pandas", "gurobipy", "openpyxl", "pytest"}
+    stdlib = set(getattr(__import__("sys"), "stdlib_module_names", ()))
+    src = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                       "src", "lithium_energies")
+
+    undeclared = {}
+    for fn in os.listdir(src):
+        if not fn.endswith(".py"):
+            continue
+        tree = ast.parse(open(os.path.join(src, fn), encoding="utf-8").read())
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                names = [a.name for a in node.names]
+            elif isinstance(node, ast.ImportFrom):
+                names = [node.module or ""] if node.level == 0 else []
+            else:
+                continue
+            for n in names:
+                top = n.split(".")[0]
+                if top and top not in stdlib and top not in declared \
+                        and top != "lithium_energies":
+                    undeclared.setdefault(top, set()).add(fn)
+
+    assert not undeclared, (
+        "imported but not declared in pyproject.toml: "
+        + ", ".join("%s (%s)" % (k, ", ".join(sorted(v)))
+                    for k, v in sorted(undeclared.items())))
