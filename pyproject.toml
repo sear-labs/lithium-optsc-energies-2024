@@ -20,7 +20,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8.0,<9"]
+dev = ["pytest>=8.0,<9", "tomli; python_version < '3.11'"]
 
 [project.urls]
 Paper = "https://doi.org/10.3390/en17112685"
