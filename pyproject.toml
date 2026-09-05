@@ -30,3 +30,5 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+# Registered so a typo in the marker name is an error, not a silent no-op.
+markers = ["slow: needs a full Gurobi licence and solves the real model"]
