@@ -60,6 +60,20 @@ paper), 9,511,655.43, and 9,511,781.80. All three round to 9.51 × 10⁶.
 `tests/test_reproduces_paper.py` asserts the structural figures exactly and the objective within a
 documented tolerance.
 
+## Notes on the published result
+
+These affect only the paper's comparison with fossil fuels (pp. 25–26), not the model or its results.
+They are recorded here rather than as a journal correction.
+
+- **Lithium demand total.** The paper gives 9,100 kt over the 81 model years. Its own demand table and
+  `data/raw/mine_demand.csv` sum to about 97,100 kt, so the material tonnage (×170) is about 16.5 Gt,
+  not 1.55 Gt. That is still far below fossil fuels' 15 Gt a year.
+- **Units.** "Almost 10 gigatons" of 2022 fossil emissions is the Global Carbon Budget's 9.9 Gt of
+  *carbon*, about 36 Gt CO₂; the model's 56.8 Gt is CO₂. In matching units, one year of fossil
+  emissions is about two-thirds of the supply chain's 81-year total, not "over a sixth".
+- **Arithmetic.** 81 years at 10 Gt is 810 Gt, not 8,100, and the 753 Gt "saved" is 10% of 8,100
+  minus 56.8. In CO₂ units the same 10% assumption gives about 2,940 Gt and about 237 Gt saved.
+
 ## Verify it without a solver, without a licence
 
 **Re-solving is the wrong verb.** This is a MIP that Gurobi could not close in 28 hours, finishing
